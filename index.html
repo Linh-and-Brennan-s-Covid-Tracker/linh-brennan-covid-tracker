@@ -6,6 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href='./styles/sass/style.css'>
     <title>Linh and Brennan's Covid Tracker</title>
+
+    <!-- Reminder: Must review accessbility best practices and compare them to the application before submission. -->
+    <!-- Reminder: Test to see if there are any significant differences between local repository and hosting live on netlify. -->
+
+    <!-- Question: What is the purpose of the style.css.map file? -->
+    <!-- Question: What are some accessbility practices we should keep in mind for this project? -->
+
 </head>
 <body>
     <header>
@@ -16,7 +23,11 @@
     <main>
         <section>
             <div class="wrapper">
-                <form action=""><input type="text"><button type="submit"></button></form>
+                <form action="">
+                    <label for="userSearch">User Search</label>
+                    <input type="text" name="userSearch" class="userSearch" id="userSearch">
+                    <button type="submit">Submit</button>
+                </form>
             </div>
         </section>
         <section class="covidStatistics">

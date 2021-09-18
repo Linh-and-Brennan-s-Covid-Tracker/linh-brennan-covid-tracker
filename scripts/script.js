@@ -3,14 +3,40 @@ const myApp = {};
 
 // Add properties to namespace object including the API endpoints
 myApp.globalTimeline = "https://corona-api.com/timeline";
+myApp.allCountries = "https://corona-api.com/countries";
 
 // Use Fetch API to get all relevant global data
 myApp.getGlobalData = () => {
   const url = new URL(myApp.globalTimeline);
   fetch(url)
-    .then((response) => response.json())
-    .then((jsonResponse) => myApp.displayGlobalData(jsonResponse.data[0]));
+    .then(response => response.json())
+    .then(jsonResponse => myApp.displayGlobalData(jsonResponse.data[0]));
 };
+
+// Use Fetch API to all the data of each country
+myApp.getCountryData = () => {
+    const url = new URL (myApp.allCountries);
+    fetch(url)
+        .then(response => response.json())
+        .then(jsonResponse => jsonResponse);
+}
+
+myApp.formatInput = userInput => {
+    // Store reference to the country the user is attempting to make an query for and make it lowercase
+    let countryName = userInput.toLowerCase();
+
+    // Store a reference of the first character of the coutry's name and convert it to upper case
+    const firstCharacter = countryName.charAt(0).toUpperCase();
+
+    // Remove the duplicate first character from the coutry name variable
+    countryName = countryName.slice(1);
+
+    // Concatenate the first character and country name variables
+    const finalFormat = firstCharacter + countryName;
+
+    // Return the user input with an update format
+    return finalFormat     
+}
 
 //Display global API to the HTML page
 //Create li element to display active properties, confirmed case, date, deaths, updated_at
@@ -28,10 +54,43 @@ myApp.displayGlobalData = (data) => {
   }
 };
 
+// Declare a method for getting, storing, and using the user's input
+myApp.getUserInput = () => {
+
+    // Store reference to the submit button in a variable
+    const submitButton = document.querySelector("button");
+
+    // Store the form element in a variable
+    const formElement = document.querySelector("form");
+
+    // Attach an event listener to the form element that will react to a submit event
+    formElement.addEventListener("submit", event => {
+        event.preventDefault();
+        
+        // Store a reference to the text input element
+        const textInput = document.querySelector("#userSearch");
+
+        // In order to access the user input we store reference to their query in a variable
+        const userInput = textInput.value;
+
+        // Format user input to reflect the naming convention of the API data, to do this we pass it the userInput variable
+        const countryName = myApp.formatInput(userInput);
+        console.log(countryName);
+        // Make a fetch request to the API 
+        myApp.getCountryData();
+
+        // Pass the user input into getCountryData 
+        // Pass the user's search query to the API when making a call with the fetch API 
+        // Filter the results down to a specific country, using the filter method on the data returned by the API
+        // Render the results onto the page 
+    });
+}
+
 // Declare an initialization method
 myApp.init = () => {
   // Call the getData method
   myApp.getGlobalData();
+  myApp.getUserInput();
 };
 
 // Call the initialization method
