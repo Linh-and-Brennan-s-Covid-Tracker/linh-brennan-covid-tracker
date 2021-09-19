@@ -1,0 +1,11 @@
+.individualCountries {
+    display: flex;
+    justify-content: space-between;
+    
+    li {
+        max-width: 10%;
+        width: calc(20% - 2rem);
+        word-wrap:break-word;
+    }
+
+}

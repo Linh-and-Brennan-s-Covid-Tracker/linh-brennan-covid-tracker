@@ -51,15 +51,6 @@ myApp.displayCountryData = (countryData) => {
   //Clear unordered list every time the method is called to prevent duplication;
   countryList.innerHTML = "";
 
-  //Create a for loop to render li elements. 
-  for (let i = 0; i < countryStats.length; i++) {
-    const listElements = document.createElement("li");
-    listElements.append(
-      `${countryStats[i]} : ${countryData[0].latest_data[`${countryStats[i]}`]}`
-    );
-    countryList.append(listElements);
-  }
-
   //Manually added 2 additional li elements
   const countryName = document.createElement("li");
   countryName.append(`Country Name: ${countryData[0].name}`);
@@ -68,6 +59,15 @@ myApp.displayCountryData = (countryData) => {
   const countryPopulation = document.createElement("li");
   countryPopulation.append(`Country Population: ${countryData[0].population}`);
   countryList.append(countryPopulation);
+
+  //Create a for loop to render li elements. 
+  for (let i = 0; i < countryStats.length; i++) {
+    const listElements = document.createElement("li");
+    listElements.append(
+      `${countryStats[i]}: ${countryData[0].latest_data[`${countryStats[i]}`]}`
+    );
+    countryList.append(listElements);
+  }
 };
 
 myApp.formatInput = (userInput) => {
@@ -92,13 +92,17 @@ myApp.displayGlobalData = (data) => {
   //Display global API to the HTML page
   const globalList = document.querySelector("#globalList");
   //Create an local array of specific relevant properties and use them to access the properties value of the data object
-  const globalInfo = ["active", "confirmed", "date", "deaths", "updated_at"];
+  const globalInfo = ["active", "confirmed", "date", "deaths"];
   for (let i = 0; i < globalInfo.length; i++) {
     //Create li element to display active properties, confirmed case, date, deaths, updated_at
     const listElements = document.createElement("li");
     listElements.append(`${globalInfo[i]} : ${data[globalInfo[i]]}`);
     globalList.append(listElements);
   }
+  const lastUpdated = document.querySelector("#lastUpdated");
+  const updatedCaption = document.createElement("p");
+  updatedCaption.textContent = `Last updated: ${data.updated_at}`
+  lastUpdated.append(updatedCaption);
 };
 
 // Declare a method for getting, storing, and using the user's input

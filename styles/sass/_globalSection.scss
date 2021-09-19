@@ -1,0 +1,15 @@
+.covidStatistics {
+
+    .globalList {
+        display: flex;
+        justify-content: space-between;
+
+        li {
+            max-width: 10%;
+            width: calc(25% - 2rem);
+            word-wrap:break-word;
+        }
+
+    }
+
+}

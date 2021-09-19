@@ -1,0 +1,10 @@
+header {
+    h1 {
+        display: flex;
+        justify-content: flex-start;
+        font-family: $primaryFont;
+        padding: 1rem 0;
+        background-color: white;
+        border-radius: 5px;
+    }
+}

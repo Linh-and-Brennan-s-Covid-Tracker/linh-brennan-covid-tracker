@@ -228,4 +228,74 @@ html {
           clip-path: inset(100%);
   clip: rect(0 0 0 0);
   overflow: hidden;
+}
+
+body, h1, h2, h3, h4, ul, li, p, a {
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+}
+
+html {
+  font-size: 125%;
+}
+
+.wrapper {
+  width: 90%;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+}
+
+* {
+  border: 1px solid red;
+}
+
+header h1 {
+  display: flex;
+  justify-content: flex-start;
+  font-family: "Roboto", sans-serif;
+  padding: 1rem 0;
+  background-color: white;
+  border-radius: 5px;
+}
+
+.covidStatistics .globalList {
+  display: flex;
+  justify-content: space-between;
+}
+.covidStatistics .globalList li {
+  max-width: 10%;
+  width: calc(25% - 2rem);
+  word-wrap: break-word;
+}
+
+.individualCountries {
+  display: flex;
+  justify-content: space-between;
+}
+.individualCountries li {
+  max-width: 10%;
+  width: calc(20% - 2rem);
+  word-wrap: break-word;
+}
+
+footer .wrapper {
+  display: flex;
+  justify-content: space-between;
 }/*# sourceMappingURL=style.css.map */

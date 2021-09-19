@@ -7,6 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css"> 
     <link rel="stylesheet" href='./styles/sass/style.css'>
     <title>Linh and Brennan's Covid Tracker</title>
 
@@ -16,16 +17,17 @@
     <!-- Question: What is the purpose of the style.css.map file? -->
     <!-- Question: What are some accessbility practices we should keep in mind for this project? -->
     <!-- Question: Should we handle a spelling mistake with catch method or should we use conditional statement for our error handling? -->
-    <!-- Question: We ran into the issue if the country name is more than 1 word or consist of "and" or there initial to country name, we couldn't properly fetch the data -->
 
 </head>
 <body>
+    <!-- Header Section -->
     <header>
         <div class="wrapper">
             <h1>Covid Tracker</h1>
         </div>
     </header>
     <main>
+        <!-- Global Statistics -->
         <section class="covidStatistics">
             <div class="wrapper">
                 <div class="globalInformation">
@@ -36,12 +38,18 @@
                 </div>    
             </div>
         </section>
+        <!-- World Map -->
         <section>
             <div class="wrapper">
-                <img src="./assets/worldMap.png" alt="picture of the world map">
+                <div class="imageContainer">
+                    <img src="./assets/worldMap.png" alt="picture of the world map">
+                </div>
+                <div id="lastUpdated">
+                </div>
             </div>
             <!-- Potential div for global graph as stretch goal -->
         </section>
+        <!-- Specific Countries -->
         <section>
             <div class="wrapper">
                 <form action="">
@@ -63,8 +71,10 @@
         <!-- Potential aside section for covid information -->
         <!-- Potential aside section for recent user search -->
         <footer>
-            <p>Created by <a href="https://github.com/Linh-and-Brennan-s-Covid-Tracker/linh-brennan-covid-tracker"> Linh Doan & Brennan Curtis</a></p>
-            <p>Created at <a href="https://junocollege.com"></a> Juno College of Technology</p>
+            <div class="wrapper">
+                <p>Created by <a href="https://github.com/Linh-and-Brennan-s-Covid-Tracker/linh-brennan-covid-tracker"> Linh Doan & Brennan Curtis</a></p>
+                <p>Created at <a href="https://junocollege.com"></a> Juno College of Technology</p>
+            </div>
         </footer>
     </main>
     <script src="./scripts/script.js"></script>
