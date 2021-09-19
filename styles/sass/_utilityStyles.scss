@@ -14,9 +14,10 @@ html { font-size: 125%; }
 // General Styles
 body {
     font-family: $primaryFont;
+    background-color: $backgroundColour;
 }
 
 // Code Debugging
-* {
-    border: 1px solid red;
-}
+// * {
+//     border: 1px solid red;
+// }

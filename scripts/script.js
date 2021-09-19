@@ -53,12 +53,12 @@ myApp.displayCountryData = (countryData) => {
 
   //Manually added 2 additional li elements
   const countryName = document.createElement("li");
-  countryName.innerHTML = `<span>Name: </span>
+  countryName.innerHTML = `<span class="statisticTitle">Name: </span>
   <span>${countryData[0].name}</span>`;
   countryList.append(countryName);
 
   const countryPopulation = document.createElement("li");
-  countryPopulation.innerHTML = `<span>Population: </span>
+  countryPopulation.innerHTML = `<span class="statisticTitle">Population: </span>
     <span>${countryData[0].population.toLocaleString()}</span>`;
   countryList.append(countryPopulation);
 
@@ -66,7 +66,7 @@ myApp.displayCountryData = (countryData) => {
   for (let i = 0; i < countryStats.length; i++) {
     const listElements = document.createElement("li");
     listElements.innerHTML = `
-    <span>${countryStats[i]}: </span>
+    <span class="statisticTitle">${countryStats[i]}: </span>
     <span>${countryData[0].latest_data[
       `${countryStats[i]}`
     ].toLocaleString()}</span>`;
@@ -101,7 +101,7 @@ myApp.displayGlobalData = (data) => {
     //Create li element to display active properties, confirmed case, date, deaths, updated_at
     const listElements = document.createElement("li");
     listElements.innerHTML = `
-    <span>${globalInfo[i]}: </span>
+    <span class="statisticTitle">${globalInfo[i]}: </span>
     <span>${data[globalInfo[i]].toLocaleString()}</span>`;
     globalList.append(listElements);
   }
