@@ -15,16 +15,22 @@ myApp.getGlobalData = () => {
 
 // Use Fetch API to all the data of each country
 //console.log(jsonResponse.data.filter(item => item.code === "AF"))
-//
+
 myApp.getCountryData = (countryName) => {
   const url = new URL(myApp.allCountries);
   fetch(url)
     .then((response) => response.json())
-    .then((jsonResponse) =>
-      //   myApp.displayCountryData(
-      //     jsonResponse.data.filter((country) => country.name === `${countryName}`)
-      //   )
-      myApp.displayErrors(countryName)
+    .then((jsonResponse) => {
+      const apiResponse = jsonResponse.data.filter((country) => country.name === `${countryName}`);
+      // Create a conditional statement that will evaluate to true if the user input matches a country from the fetch request response
+      if (apiResponse.length) {
+        myApp.displayCountryData(apiResponse) 
+        console.log(apiResponse);
+      } else {
+        myApp.displayErrors(countryName)
+      }
+
+      }
     );
 };
 
@@ -38,15 +44,25 @@ myApp.displayErrors = (countryName) => {
 
 myApp.displayCountryData = (countryData) => {
   const countryList = document.querySelector("#individualCountries");
-  const countryInfo = ["confirmed", "deaths", "critical", "recovered"];
+  const countryStats = ["confirmed", "deaths", "critical", "recovered"];
+  const countryInfo = ["name", "population"];
 
   countryList.innerHTML = "";
 
-  for (let i = 0; i < countryInfo.length; i++) {
+  for (let i = 0; i < countryStats.length; i++) {
     const listElements = document.createElement("li");
     listElements.append(
-      `${countryInfo[i]} : ${countryData[0].latest_data[`${countryInfo[i]}`]}`
+      `${countryStats[i]} : ${countryData[0].latest_data[`${countryStats[i]}`]}`
     );
+    countryList.append(listElements);
+  }
+  
+  for (let i = 0; i < countryInfo.length; i++) {
+    const listElements = document.createElement("li");
+    console.log(countryData[0].name);
+    listElements.append(
+      `${countryInfo[i]} : ${countryData[0]}.${countryInfo[i]}`
+    )
     countryList.append(listElements);
   }
 };
@@ -104,7 +120,7 @@ myApp.getUserInput = () => {
 
     // Make a fetch request to the API
     myApp.getCountryData(countryName);
-
+    textInput.value = "";
     // Pass the user input into getCountryData
     // Pass the user's search query to the API when making a call with the fetch API
     // Filter the results down to a specific country, using the filter method on the data returned by the API
