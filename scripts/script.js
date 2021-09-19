@@ -14,7 +14,6 @@ myApp.getGlobalData = () => {
 };
 
 // Use Fetch API to all the data of each country
-//console.log(jsonResponse.data.filter(item => item.code === "AF"))
 
 myApp.getCountryData = (countryName) => {
   const url = new URL(myApp.allCountries);
@@ -34,6 +33,7 @@ myApp.getCountryData = (countryName) => {
     });
 };
 
+//Declare a method to handle errors if user mistyped or there are no data available in the api. 
 myApp.displayErrors = (countryName) => {
   const countryList = document.querySelector("#individualCountries");
   countryList.innerHTML = "";
@@ -42,12 +42,16 @@ myApp.displayErrors = (countryName) => {
   countryList.append(errorMessage);
 };
 
+//Declare a method to display country Data;
 myApp.displayCountryData = (countryData) => {
+  //Store reference for the unordered list
   const countryList = document.querySelector("#individualCountries");
+  //Create an array of the object properties that we will be accessing
   const countryStats = ["confirmed", "deaths", "critical", "recovered"];
-
+  //Clear unordered list every time the method is called to prevent duplication;
   countryList.innerHTML = "";
 
+  //Create a for loop to render li elements. 
   for (let i = 0; i < countryStats.length; i++) {
     const listElements = document.createElement("li");
     listElements.append(
@@ -56,6 +60,7 @@ myApp.displayCountryData = (countryData) => {
     countryList.append(listElements);
   }
 
+  //Manually added 2 additional li elements
   const countryName = document.createElement("li");
   countryName.append(`Country Name: ${countryData[0].name}`);
   countryList.append(countryName);
@@ -82,16 +87,14 @@ myApp.formatInput = (userInput) => {
   return finalFormat;
 };
 
-//Display global API to the HTML page
-//Create li element to display active properties, confirmed case, date, deaths, updated_at
-//Create li for each one of this property
-//Create an local array of specific relevant properties and use them to access the properties value of the data object
-
+//Declare a method to display global Data;
 myApp.displayGlobalData = (data) => {
+  //Display global API to the HTML page
   const globalList = document.querySelector("#globalList");
+  //Create an local array of specific relevant properties and use them to access the properties value of the data object
   const globalInfo = ["active", "confirmed", "date", "deaths", "updated_at"];
   for (let i = 0; i < globalInfo.length; i++) {
-    //create list elements
+    //Create li element to display active properties, confirmed case, date, deaths, updated_at
     const listElements = document.createElement("li");
     listElements.append(`${globalInfo[i]} : ${data[globalInfo[i]]}`);
     globalList.append(listElements);
@@ -118,12 +121,9 @@ myApp.getUserInput = () => {
 
     // Make a fetch request to the API
     myApp.getCountryData(countryName);
+
+    //Clear the text input after the user submitted a search query
     textInput.value = "";
-    // Pass the user input into getCountryData
-    // Pass the user's search query to the API when making a call with the fetch API
-    // Filter the results down to a specific country, using the filter method on the data returned by the API
-    // Error handling message if the country does not exist in the list or mistype in userInput
-    // Render the results onto the page
   });
 };
 
