@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href='./styles/sass/style.css'>
     <title>Linh and Brennan's Covid Tracker</title>
 
@@ -18,19 +21,10 @@
 <body>
     <header>
         <div class="wrapper">
-            <p></p>
+            <h1>Covid Tracker</h1>
         </div>
     </header>
     <main>
-        <section>
-            <div class="wrapper">
-                <form action="">
-                    <label for="userSearch">User Search</label>
-                    <input type="text" name="userSearch" class="userSearch" id="userSearch">
-                    <button type="submit">Submit</button>
-                </form>
-            </div>
-        </section>
         <section class="covidStatistics">
             <div class="wrapper">
                 <div class="globalInformation">
@@ -38,18 +32,38 @@
                         <ul class="globalList" id="globalList">
                         </ul>
                     </div>
-                </div>
-                <div>
+                </div>    
+            </div>
+        </section>
+        <section>
+            <div class="wrapper">
+                <img src="./assets/worldMap.png" alt="picture of the world map">
+            </div>
+            <!-- Potential div for global graph as stretch goal -->
+        </section>
+        <section>
+            <div class="wrapper">
+                <form action="">
+                    <label for="userSearch">User Search</label>
+                    <input type="text" name="userSearch" class="userSearch" id="userSearch">
+                    <button type="submit">Submit</button>
+                </form>
+                <!-- Potential div for line statistics according to the infected rate -->
+                <div class="countryInformation">
                     <div>
                         <ul class="individualCountries" id="individualCountries">
                         </ul>
                     </div>
                     <div id="errorMessage"></div>
                 </div>
+                 <!-- Potential graph from each country statistics -->
             </div>
         </section>
+        <!-- Potential aside section for covid information -->
+        <!-- Potential aside section for recent user search -->
         <footer>
-            <p></p>
+            <p>Created by <a href="https://github.com/Linh-and-Brennan-s-Covid-Tracker/linh-brennan-covid-tracker"> Linh Doan & Brennan Curtis</a></p>
+            <p>Created at <a href="https://junocollege.com"></a> Juno College of Technology</p>
         </footer>
     </main>
     <script src="./scripts/script.js"></script>

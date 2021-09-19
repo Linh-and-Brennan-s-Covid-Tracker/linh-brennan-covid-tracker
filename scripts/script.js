@@ -21,17 +21,17 @@ myApp.getCountryData = (countryName) => {
   fetch(url)
     .then((response) => response.json())
     .then((jsonResponse) => {
-      const apiResponse = jsonResponse.data.filter((country) => country.name === `${countryName}`);
+      const apiResponse = jsonResponse.data.filter(
+        (country) => country.name === `${countryName}`
+      );
       // Create a conditional statement that will evaluate to true if the user input matches a country from the fetch request response
       if (apiResponse.length) {
-        myApp.displayCountryData(apiResponse) 
+        myApp.displayCountryData(apiResponse);
         console.log(apiResponse);
       } else {
-        myApp.displayErrors(countryName)
+        myApp.displayErrors(countryName);
       }
-
-      }
-    );
+    });
 };
 
 myApp.displayErrors = (countryName) => {
@@ -45,7 +45,6 @@ myApp.displayErrors = (countryName) => {
 myApp.displayCountryData = (countryData) => {
   const countryList = document.querySelector("#individualCountries");
   const countryStats = ["confirmed", "deaths", "critical", "recovered"];
-  const countryInfo = ["name", "population"];
 
   countryList.innerHTML = "";
 
@@ -56,15 +55,14 @@ myApp.displayCountryData = (countryData) => {
     );
     countryList.append(listElements);
   }
-  
-  for (let i = 0; i < countryInfo.length; i++) {
-    const listElements = document.createElement("li");
-    console.log(countryData[0].name);
-    listElements.append(
-      `${countryInfo[i]} : ${countryData[0]}.${countryInfo[i]}`
-    )
-    countryList.append(listElements);
-  }
+
+  const countryName = document.createElement("li");
+  countryName.append(`Country Name: ${countryData[0].name}`);
+  countryList.append(countryName);
+
+  const countryPopulation = document.createElement("li");
+  countryPopulation.append(`Country Population: ${countryData[0].population}`);
+  countryList.append(countryPopulation);
 };
 
 myApp.formatInput = (userInput) => {
