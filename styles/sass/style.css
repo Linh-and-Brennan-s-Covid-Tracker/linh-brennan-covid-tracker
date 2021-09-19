@@ -282,7 +282,12 @@ header h1 {
 .covidStatistics .globalList li {
   max-width: 10%;
   width: calc(25% - 2rem);
-  word-wrap: break-word;
+}
+.covidStatistics .globalList li span {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  text-transform: uppercase;
 }
 
 .individualCountries {
@@ -293,6 +298,12 @@ header h1 {
   max-width: 10%;
   width: calc(20% - 2rem);
   word-wrap: break-word;
+}
+.individualCountries li span {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  text-transform: uppercase;
 }
 
 footer .wrapper {

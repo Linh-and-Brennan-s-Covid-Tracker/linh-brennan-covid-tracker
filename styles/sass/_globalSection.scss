@@ -7,7 +7,12 @@
         li {
             max-width: 10%;
             width: calc(25% - 2rem);
-            word-wrap:break-word;
+            span {
+                display: flex;
+                flex-wrap: wrap;
+                width: 100%;
+                text-transform: uppercase;
+            }
         }
 
     }

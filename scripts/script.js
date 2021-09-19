@@ -33,7 +33,7 @@ myApp.getCountryData = (countryName) => {
     });
 };
 
-//Declare a method to handle errors if user mistyped or there are no data available in the api. 
+//Declare a method to handle errors if user mistyped or there are no data available in the api.
 myApp.displayErrors = (countryName) => {
   const countryList = document.querySelector("#individualCountries");
   countryList.innerHTML = "";
@@ -53,19 +53,23 @@ myApp.displayCountryData = (countryData) => {
 
   //Manually added 2 additional li elements
   const countryName = document.createElement("li");
-  countryName.append(`Country Name: ${countryData[0].name}`);
+  countryName.innerHTML = `<span>Name: </span>
+  <span>${countryData[0].name}</span>`;
   countryList.append(countryName);
 
   const countryPopulation = document.createElement("li");
-  countryPopulation.append(`Country Population: ${countryData[0].population}`);
+  countryPopulation.innerHTML = `<span>Population: </span>
+    <span>${countryData[0].population.toLocaleString()}</span>`;
   countryList.append(countryPopulation);
 
-  //Create a for loop to render li elements. 
+  //Create a for loop to render li elements.
   for (let i = 0; i < countryStats.length; i++) {
     const listElements = document.createElement("li");
-    listElements.append(
-      `${countryStats[i]}: ${countryData[0].latest_data[`${countryStats[i]}`]}`
-    );
+    listElements.innerHTML = `
+    <span>${countryStats[i]}: </span>
+    <span>${countryData[0].latest_data[
+      `${countryStats[i]}`
+    ].toLocaleString()}</span>`;
     countryList.append(listElements);
   }
 };
@@ -96,12 +100,14 @@ myApp.displayGlobalData = (data) => {
   for (let i = 0; i < globalInfo.length; i++) {
     //Create li element to display active properties, confirmed case, date, deaths, updated_at
     const listElements = document.createElement("li");
-    listElements.append(`${globalInfo[i]} : ${data[globalInfo[i]]}`);
+    listElements.innerHTML = `
+    <span>${globalInfo[i]}: </span>
+    <span>${data[globalInfo[i]].toLocaleString()}</span>`;
     globalList.append(listElements);
   }
   const lastUpdated = document.querySelector("#lastUpdated");
   const updatedCaption = document.createElement("p");
-  updatedCaption.textContent = `Last updated: ${data.updated_at}`
+  updatedCaption.textContent = `Last updated: ${data.updated_at}`;
   lastUpdated.append(updatedCaption);
 };
 
