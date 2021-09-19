@@ -34,6 +34,7 @@ myApp.getCountryData = (countryName) => {
 };
 
 //Declare a method to handle errors if user mistyped or there are no data available in the api.
+//REMINDER: If userInput include a space, render one error message, else render the current message that we have
 myApp.displayErrors = (countryName) => {
   const countryList = document.querySelector("#individualCountries");
   countryList.innerHTML = "";

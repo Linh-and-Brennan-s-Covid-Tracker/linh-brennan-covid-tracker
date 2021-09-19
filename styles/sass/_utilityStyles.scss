@@ -17,6 +17,11 @@ body {
     background-color: $backgroundColour;
 }
 
+input, button {
+    font-family: $primaryFont;
+}
+
+
 // Code Debugging
 // * {
 //     border: 1px solid red;

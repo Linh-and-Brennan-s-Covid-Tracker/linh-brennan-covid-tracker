@@ -263,6 +263,13 @@ body {
   background-color: #f5f7fb;
 }
 
+input, button {
+  font-family: "Roboto", sans-serif;
+}
+
+/* Portrait tablet and small desktops */
+/* Landscape phone to portrait tablet */
+/* Landscape phones and down */
 header h1 {
   display: flex;
   justify-content: flex-start;
@@ -316,21 +323,45 @@ header h1 {
 
 .individualCountries {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
 }
 .individualCountries li {
-  max-width: 10%;
-  width: calc(20% - 2rem);
-  word-wrap: break-word;
+  width: calc(100%/6 - 1rem);
+  border-radius: 5px;
+  background-color: white;
+  padding: 1rem;
 }
 .individualCountries li span {
   display: flex;
   flex-wrap: wrap;
   width: 100%;
   text-transform: uppercase;
+  padding: 0.15rem 0;
+  justify-content: center;
+}
+.individualCountries li span:nth-child(2) {
+  font-weight: 700;
+  color: #EF613A;
+}
+
+.countrySection .wrapper form {
+  margin: 20px 0;
+}
+.countrySection .wrapper form input {
+  width: 30%;
+  height: 30px;
+  margin: 0;
+}
+.countrySection .wrapper form button {
+  background-color: #69B1D6;
+  color: white;
+  border: 2px solid #69B1D6;
 }
 
 footer .wrapper {
   display: flex;
   justify-content: space-between;
+  font-size: 0.9rem;
+  opacity: 0.5;
 }/*# sourceMappingURL=style.css.map */

@@ -51,23 +51,23 @@
             <!-- Potential div for global graph as stretch goal -->
         </section>
         <!-- Specific Countries -->
-        <section>
+        <section class="countrySection">
             <div class="wrapper">
-                 <h2>Statistics by Country</h2>
+                <h2>Statistics by Country</h2>
                 <form action="">
-                    <label for="userSearch">User Search</label>
-                    <input type="text" name="userSearch" class="userSearch" id="userSearch">
+                    <label for="userSearch" class="sr-only">User Search</label>
+                    <input type="text" name="userSearch" class="userSearch" id="userSearch" placeholder="Please enter a Country Name">
                     <button type="submit">Submit</button>
                 </form>
                 <!-- Potential div for line statistics according to the infected rate -->
                 <div class="countryInformation">
                     <div>
                         <ul class="individualCountries" id="individualCountries">
-                            <li>
+                            <!-- <li>
                                 <span class="propertykey">
                                 </span>
                                 <span class="propertykey"></span>
-                            </li>
+                            </li> -->
                         </ul>
                     </div>
                     <div id="errorMessage"></div>
