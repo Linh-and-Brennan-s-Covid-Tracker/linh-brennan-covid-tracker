@@ -1,5 +1,20 @@
 /* Portrait tablet and small desktops */
-@media (max-width: 940px) {}
+@media (max-width: 940px) {
+    .covidStatistics {
+        .globalList {
+            li {
+                width: calc(100%/2 - 2rem);
+                margin-bottom: 0.5rem;
+            }
+        }
+    }
+
+    .individualCountries li {
+        width: calc(100%/3 - 1rem);
+        margin-bottom: 0.5rem;
+    }
+
+}
 
 /* Landscape phone to portrait tablet */
 @media (max-width: 768px) {}

@@ -1,19 +1,22 @@
 .covidStatistics {
 
     h2 {
-        color: $blue;
+        color: $purpleBlue;
+        font-weight: 500;
+        font-size: 1.5rem;
     }
 
     .globalList {
         display: flex;
+        flex-wrap: wrap;
         justify-content: space-between;
         margin: 1rem 0;
 
         li {
-            width: calc(25% - 2rem);
-            background-color: white;
-            border-radius: 5px;
+            width: calc(100%/4 - 2rem);
+            border-radius: 10px;
             padding: 1rem 0;
+            box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 
             span {
                 display: flex;
@@ -23,14 +26,39 @@
                 padding: .15rem 0;
                 justify-content: center;
             }
-
-            span:nth-child(2) {
-                font-weight: 700;
-                color: $orange;
-            }
-
         }
 
+        li:nth-child(1) {
+            span:nth-child(2) {
+                font-weight: 700;
+                color: $red;
+            }
+        }
+
+        li:nth-child(2) {
+            span:nth-child(2) {
+                font-weight: 700;
+                color: $yellow;
+            }
+        }
+
+        li:nth-child(3) {
+            span:nth-child(2) {
+                font-weight: 700;
+                color: $purpleBlue;
+            }
+        }
+
+         li:nth-child(4) {
+             span:nth-child(2) {
+                 font-weight: 700;
+                 color: $green;
+             }
+        }
+
+        .statisticTitle {
+            font-weight: 300;
+        }
     }
 
 }

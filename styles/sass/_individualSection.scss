@@ -1,5 +1,6 @@
 .individualCountries {
     display: flex;
+    flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
     
@@ -7,6 +8,7 @@
         width: calc(100%/6 - 1rem);
         border-radius: 5px;
         background-color: white;
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
         padding: 1rem;
 
         span {
@@ -16,12 +18,47 @@
             text-transform: uppercase;
             padding: .15rem 0;
             justify-content: center;
-            
         }
-
+    }
+    li:nth-child(1) {
         span:nth-child(2) {
             font-weight: 700;
-            color: $orange;
+            color: $purpleBlue;
+        }
+    }
+
+    li:nth-child(2) {
+        span:nth-child(2) {
+            font-weight: 700;
+            color: $green;
+        }
+    }
+
+    li:nth-child(3) {
+        span:nth-child(2) {
+            font-weight: 700;
+            color: $yellow;
+        }
+    }
+
+    li:nth-child(4) {
+        span:nth-child(2) {
+            font-weight: 700;
+            color: $red;
+        }
+    }
+
+    li:nth-child(5) {
+        span:nth-child(2) {
+            font-weight: 700;
+            color: $purple;
+        }
+    }
+
+    li:nth-child(6) {
+        span:nth-child(2) {
+            font-weight: 700;
+            color: $blue;
         }
     }
 }
@@ -42,6 +79,15 @@
                 border: 2px solid $blue;
             }
         }
-        
+
+        h2 {
+            color: $purpleBlue;
+            font-weight: 500;
+            font-size: 1.5rem;
+        }
+
+        .statisticTitle {
+            font-weight: 300;
+        }
     }
 }

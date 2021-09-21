@@ -255,35 +255,37 @@ html {
 .wrapper {
   width: 90%;
   max-width: 1280px;
-  margin: 0 auto;
+  margin: 20px auto;
 }
 
 body {
-  font-family: "Roboto", sans-serif;
-  background-color: #f5f7fb;
+  font-family: "Poppins", sans-serif;
+  background-color: white;
 }
 
 input, button {
-  font-family: "Roboto", sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
-/* Portrait tablet and small desktops */
-/* Landscape phone to portrait tablet */
-/* Landscape phones and down */
 header h1 {
   display: flex;
   justify-content: flex-start;
-  font-family: "Roboto", sans-serif;
-  padding: 1rem 0;
-  background-color: white;
-  border-radius: 5px;
+  font-family: "Poppins", sans-serif;
+  padding: 1rem;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  color: #242424;
+  border-radius: 10px;
+  font-size: 2rem;
+}
+header .fa-virus {
+  font-size: 1.5rem;
+  color: #4048cc;
 }
 
 .mapSection .wrapper {
   position: relative;
 }
 .mapSection .wrapper .imageContainer {
-  border: 10px solid white;
   border-radius: 5px;
 }
 .mapSection .wrapper .lastUpdated {
@@ -295,18 +297,21 @@ header h1 {
 }
 
 .covidStatistics h2 {
-  color: #69B1D6;
+  color: #4048cc;
+  font-weight: 500;
+  font-size: 1.5rem;
 }
 .covidStatistics .globalList {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   margin: 1rem 0;
 }
 .covidStatistics .globalList li {
-  width: calc(25% - 2rem);
-  background-color: white;
-  border-radius: 5px;
+  width: calc(100%/4 - 2rem);
+  border-radius: 10px;
   padding: 1rem 0;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 .covidStatistics .globalList li span {
   display: flex;
@@ -316,13 +321,29 @@ header h1 {
   padding: 0.15rem 0;
   justify-content: center;
 }
-.covidStatistics .globalList li span:nth-child(2) {
+.covidStatistics .globalList li:nth-child(1) span:nth-child(2) {
   font-weight: 700;
-  color: #EF613A;
+  color: #ff1d3d;
+}
+.covidStatistics .globalList li:nth-child(2) span:nth-child(2) {
+  font-weight: 700;
+  color: #e39d61;
+}
+.covidStatistics .globalList li:nth-child(3) span:nth-child(2) {
+  font-weight: 700;
+  color: #4048cc;
+}
+.covidStatistics .globalList li:nth-child(4) span:nth-child(2) {
+  font-weight: 700;
+  color: #2eb9aa;
+}
+.covidStatistics .globalList .statisticTitle {
+  font-weight: 300;
 }
 
 .individualCountries {
   display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
 }
@@ -330,6 +351,7 @@ header h1 {
   width: calc(100%/6 - 1rem);
   border-radius: 5px;
   background-color: white;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   padding: 1rem;
 }
 .individualCountries li span {
@@ -340,9 +362,29 @@ header h1 {
   padding: 0.15rem 0;
   justify-content: center;
 }
-.individualCountries li span:nth-child(2) {
+.individualCountries li:nth-child(1) span:nth-child(2) {
   font-weight: 700;
-  color: #EF613A;
+  color: #4048cc;
+}
+.individualCountries li:nth-child(2) span:nth-child(2) {
+  font-weight: 700;
+  color: #2eb9aa;
+}
+.individualCountries li:nth-child(3) span:nth-child(2) {
+  font-weight: 700;
+  color: #e39d61;
+}
+.individualCountries li:nth-child(4) span:nth-child(2) {
+  font-weight: 700;
+  color: #ff1d3d;
+}
+.individualCountries li:nth-child(5) span:nth-child(2) {
+  font-weight: 700;
+  color: #7649a6;
+}
+.individualCountries li:nth-child(6) span:nth-child(2) {
+  font-weight: 700;
+  color: #69B1D6;
 }
 
 .countrySection .wrapper form {
@@ -358,10 +400,33 @@ header h1 {
   color: white;
   border: 2px solid #69B1D6;
 }
+.countrySection .wrapper h2 {
+  color: #4048cc;
+  font-weight: 500;
+  font-size: 1.5rem;
+}
+.countrySection .wrapper .statisticTitle {
+  font-weight: 300;
+}
 
 footer .wrapper {
   display: flex;
   justify-content: space-between;
   font-size: 0.9rem;
   opacity: 0.5;
-}/*# sourceMappingURL=style.css.map */
+}
+
+/* Portrait tablet and small desktops */
+@media (max-width: 940px) {
+  .covidStatistics .globalList li {
+    width: calc(100%/2 - 2rem);
+    margin-bottom: 0.5rem;
+  }
+
+  .individualCountries li {
+    width: calc(100%/3 - 1rem);
+    margin-bottom: 0.5rem;
+  }
+}
+/* Landscape phone to portrait tablet */
+/* Landscape phones and down *//*# sourceMappingURL=style.css.map */

@@ -23,34 +23,27 @@ myApp.getCountryData = (countryName) => {
       //Use Map to clone the entire API into a new array to manipulate value in name key in the api
       //I created this by referring to this section in .map(): "Using map to reformat objects in an array in this documentation": https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map#using_map_to_reformat_objects_in_an_array
 
-      const reformattedApi = jsonResponse.data.map((obj) => {
-        //create a new object for each country inside the new cloned array: reformattedApi
-        let rObj = {};
-        //copy and assign all the data point in each country by re-adding them to the new cloned array
-        rObj["name"] = obj.name.toLowerCase();
-        rObj["code"] = obj.code;
-        rObj["coordinates"] = obj.coordinates;
-        rObj["latest_data"] = obj.latest_data;
-        rObj["population"] = obj.population;
-        rObj["today"] = obj.today;
-        rObj["updated_at"] = obj.updated_at;
-        return rObj;
-      });
+      // const reformattedApi = jsonResponse.data.map((obj) => {
+      //   //create a new object for each country inside the new cloned array: reformattedApi
+      //   //copy and assign all the data point in each country by re-adding them to the new cloned array
+      //   let rObj = obj;
+      //   rObj["name"] = obj.name.toLowerCase();
+      //   return rObj;
+      // });
 
       //Refractor the if statement that validate the userinput and name in api into a new function
       //At the moment, I don't use the function formatUserInput since I directly cloned the api and reformat it in the database
-      myApp.validateInput(reformattedApi, countryName);
+      myApp.validateInput(jsonResponse.data, countryName);
     });
 };
 
 myApp.validateInput = (allCountriesAPI, countryName) => {
   const apiResponse = allCountriesAPI.filter(
-    (country) => country.name === `${countryName.toLowerCase()}`
+    (country) => country.name.toLowerCase() === `${countryName.toLowerCase()}`
   );
   // Create a conditional statement that will evaluate to true if the user input matches a country from the fetch request response
   if (apiResponse.length > 0) {
     myApp.displayCountryData(apiResponse);
-    console.log(apiResponse);
   } else {
     myApp.displayErrors(countryName);
   }
@@ -127,6 +120,7 @@ myApp.displayGlobalData = (data) => {
     listElements.innerHTML = `
     <span class="statisticTitle">${globalInfo[i]}: </span>
     <span>${data[globalInfo[i]].toLocaleString()}</span>`;
+
     globalList.append(listElements);
   }
   const lastUpdated = document.querySelector("#lastUpdated");

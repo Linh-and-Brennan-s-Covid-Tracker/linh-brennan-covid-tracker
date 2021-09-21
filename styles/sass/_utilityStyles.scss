@@ -9,18 +9,17 @@ img { max-width: 100%; }
 
 html { font-size: 125%; }
 
-.wrapper { width: 90%; max-width: 1280px; margin: 0 auto; }
+.wrapper { width: 90%; max-width: 1280px; margin: 20px auto; }
 
 // General Styles
 body {
     font-family: $primaryFont;
-    background-color: $backgroundColour;
+    background-color: white;
 }
 
 input, button {
     font-family: $primaryFont;
 }
-
 
 // Code Debugging
 // * {
