@@ -20,19 +20,6 @@ myApp.getCountryData = (countryName) => {
   fetch(url)
     .then((response) => response.json())
     .then((jsonResponse) => {
-      //Use Map to clone the entire API into a new array to manipulate value in name key in the api
-      //I created this by referring to this section in .map(): "Using map to reformat objects in an array in this documentation": https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map#using_map_to_reformat_objects_in_an_array
-
-      // const reformattedApi = jsonResponse.data.map((obj) => {
-      //   //create a new object for each country inside the new cloned array: reformattedApi
-      //   //copy and assign all the data point in each country by re-adding them to the new cloned array
-      //   let rObj = obj;
-      //   rObj["name"] = obj.name.toLowerCase();
-      //   return rObj;
-      // });
-
-      //Refractor the if statement that validate the userinput and name in api into a new function
-      //At the moment, I don't use the function formatUserInput since I directly cloned the api and reformat it in the database
       myApp.validateInput(jsonResponse.data, countryName);
     });
 };
@@ -91,22 +78,6 @@ myApp.displayCountryData = (countryData) => {
   }
 };
 
-myApp.formatInput = (userInput) => {
-  // Store reference to the country the user is attempting to make an query for and make it lowercase
-  let countryName = userInput.toLowerCase();
-
-  // Store a reference of the first character of the coutry's name and convert it to upper case
-  const firstCharacter = countryName.charAt(0).toUpperCase();
-
-  // Remove the duplicate first character from the coutry name variable
-  countryName = countryName.slice(1);
-
-  // Concatenate the first character and country name variables
-  const finalFormat = firstCharacter + countryName;
-
-  // Return the user input with an update format
-  return finalFormat;
-};
 
 //Declare a method to display global Data;
 myApp.displayGlobalData = (data) => {
