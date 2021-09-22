@@ -320,6 +320,12 @@ header h1 {
   font-weight: 700;
   color: #EF613A;
 }
+.covidStatistics .graph {
+  width: 600px;
+  height: auto;
+  margin: 50px 0;
+  background-color: white;
+}
 
 .individualCountries {
   display: flex;

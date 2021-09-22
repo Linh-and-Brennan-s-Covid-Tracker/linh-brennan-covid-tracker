@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css"> 
     <link rel="stylesheet" href='./styles/sass/style.css'>
+
     <title>Linh and Brennan's Covid Tracker</title>
 
     <!-- Reminder: Must review accessbility best practices and compare them to the application before submission. -->
@@ -17,7 +18,6 @@
     <!-- Question: What is the purpose of the style.css.map file? -->
     <!-- Question: What are some accessbility practices we should keep in mind for this project? -->
     <!-- Question: Should we handle a spelling mistake with catch method or should we use conditional statement for our error handling? -->
-    <!-- Testing branch -->
 
 </head>
 <body>
@@ -48,6 +48,10 @@
                 </div>
                 <div class="lastUpdated" id="lastUpdated">
                 </div>
+                <!-- Added global graph div to display graph -->
+                <div class="graph">
+                    <canvas id="chart"></canvas>
+                </div>
             </div>
             <!-- Potential div for global graph as stretch goal -->
         </section>
@@ -64,11 +68,6 @@
                 <div class="countryInformation">
                     <div>
                         <ul class="individualCountries" id="individualCountries">
-                            <!-- <li>
-                                <span class="propertykey">
-                                </span>
-                                <span class="propertykey"></span>
-                            </li> -->
                         </ul>
                     </div>
                     <div id="errorMessage"></div>
@@ -85,6 +84,8 @@
             </div>
         </footer>
     </main>
+    <script src='https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js'></script>
     <script src="./scripts/script.js"></script>
+    
 </body>
 </html>

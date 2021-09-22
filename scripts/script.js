@@ -10,7 +10,12 @@ myApp.getGlobalData = () => {
   const url = new URL(myApp.globalTimeline);
   fetch(url)
     .then((response) => response.json())
-    .then((jsonResponse) => myApp.displayGlobalData(jsonResponse.data[0]));
+    .then((jsonResponse) => {
+      myApp.displayGlobalData(jsonResponse.data[0]);
+
+      //also passed jsonResponse here to receive entire timeline of global data
+      myApp.globalChart(jsonResponse.data);
+    });
 };
 
 // Use Fetch API to all the data of each country
@@ -135,6 +140,90 @@ myApp.getUserInput = () => {
 
     //Clear the text input after the user submitted a search query
     textInput.value = "";
+  });
+};
+
+myApp.globalChart = (dataInputs) => {
+  //create context value followed Chart js documentation and select ID to render Chart to html page
+  const ctx = document.getElementById("chart").getContext("2d");
+  //create empty array for different labels in graph to be able to get all data points in the API
+  const activeCases = [];
+  const labels = [];
+  const confirmedCases = [];
+  const deaths = [];
+  const recovered = [];
+
+  //Create a for loop to push all data points to the appropriate array that will be used for line chart later
+  for (let i = dataInputs.length - 1; i >= 0; i--) {
+    activeCases.push(dataInputs[i].active);
+    confirmedCases.push(dataInputs[i].confirmed);
+    deaths.push(dataInputs[i].deaths);
+    recovered.push(dataInputs[i].recovered);
+    labels.push(dataInputs[i].date);
+  }
+  console.log(labels);
+
+  //Create a line chart using Chartjs documentation (actually just an object with multiple options to format chart: type for the type of chart using, dataSet which consist a key named data to display different array to the appropriate line, the rest of key like data, label, borderColor, options etc are just plugins that provided by Chartjs to style the graph according to your preferences.
+
+  const chart = new Chart(ctx, {
+    type: "line",
+    data: {
+      labels: labels,
+      datasets: [
+        {
+          data: activeCases,
+          label: "Active",
+          borderColor: "#69B1D6",
+          fill: false,
+          borderWidth: 2,
+          tension: 0.1,
+          pointRadius: 0,
+        },
+        {
+          data: confirmedCases,
+          label: "Confirmed",
+          borderColor: "#EF613A",
+          fill: false,
+          borderWidth: 2,
+          tension: 0.1,
+          pointRadius: 0,
+        },
+        {
+          data: deaths,
+          label: "Deaths",
+          borderColor: "#ff1d3d",
+          fill: false,
+          borderWidth: 2,
+          tension: 0.1,
+          pointRadius: 0,
+        },
+        {
+          data: recovered,
+          label: "Recovered",
+          borderColor: "#5a5fa4",
+          fill: false,
+          borderWidth: 2,
+          tension: 0.1,
+          pointRadius: 0,
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      title: {
+        display: true,
+        text: "Global Statistics",
+      },
+      scales: {
+        xAxes: [
+          {
+            gridLines: {
+              color: "rgba(0, 0, 0, 0)",
+            },
+          },
+        ],
+      },
+    },
   });
 };
 
