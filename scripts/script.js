@@ -37,7 +37,6 @@ myApp.validateInput = (allCountriesAPI, countryName) => {
 };
 
 //Declare a method to handle errors if user mistyped or there are no data available in the api.
-//REMINDER: If userInput include a space, render one error message, else render the current message that we have
 myApp.displayErrors = (countryName) => {
   const countryList = document.querySelector("#individualCountries");
   countryList.innerHTML = "";
@@ -78,7 +77,6 @@ myApp.displayCountryData = (countryData) => {
   }
 };
 
-
 //Declare a method to display global Data;
 myApp.displayGlobalData = (data) => {
   //Display global API to the HTML page
@@ -115,11 +113,8 @@ myApp.getUserInput = () => {
     // In order to access the user input we store reference to their query in a variable
     const userInput = textInput.value;
 
-    // Format user input to reflect the naming convention of the API data, to do this we pass it the userInput variable
-    const countryName = myApp.formatInput(userInput);
-
     // Make a fetch request to the API
-    myApp.getCountryData(countryName);
+    myApp.getCountryData(userInput);
 
     //Clear the text input after the user submitted a search query
     textInput.value = "";
