@@ -14,7 +14,6 @@ myApp.getGlobalData = () => {
 };
 
 // Use Fetch API to all the data of each country
-
 myApp.getCountryData = (countryName) => {
   const url = new URL(myApp.allCountries);
   fetch(url)
