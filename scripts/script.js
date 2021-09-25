@@ -14,14 +14,36 @@ myApp.getGlobalData = () => {
 };
 
 // Use Fetch API to all the data of each country
-myApp.getCountryData = (countryName) => {
+myApp.getCountryData = () => {
   const url = new URL(myApp.allCountries);
   fetch(url)
     .then((response) => response.json())
     .then((jsonResponse) => {
-      myApp.validateInput(jsonResponse.data, countryName);
+
+      return myApp.generateDropdown(jsonResponse.data);
     });
 };
+
+// Dynamically render different country options within the dropdown menu
+myApp.generateDropdown = (countryData) => {
+  // Store a reference to the select element
+  const countrySelect = document.querySelector("#country");
+  // Create option elements for each index of the countryData array
+  countryData.forEach(country => {
+    // Destructure each object in the array to access the country name and code
+    const { code, name } = country;
+    // Create each option element 
+    const optionElement = document.createElement("option");
+    // Attach the destructured variables
+    optionElement.value = code;
+    optionElement.textContent = name;
+    // Append each option element to the select element
+    countrySelect.append(optionElement);
+  });
+
+}
+// Attach an event listener to the button that takes the Country code value from the option selected by the user
+// Make a fetch request with the selected country code
 
 myApp.validateInput = (allCountriesAPI, countryName) => {
   const apiResponse = allCountriesAPI.filter(
@@ -98,33 +120,34 @@ myApp.displayGlobalData = (data) => {
 };
 
 // Declare a method for getting, storing, and using the user's input
-myApp.getUserInput = () => {
-  // Store the form element in a variable
-  const formElement = document.querySelector("form");
+// myApp.getUserInput = () => {
+//   // Store the form element in a variable
+//   const formElement = document.querySelector("form");
 
-  // Attach an event listener to the form element that will react to a submit event
-  formElement.addEventListener("submit", (event) => {
-    event.preventDefault();
+//   // Attach an event listener to the form element that will react to a submit event
+//   formElement.addEventListener("submit", (event) => {
+//     event.preventDefault();
 
-    // Store a reference to the text input element
-    const textInput = document.querySelector("#userSearch");
+//     // Store a reference to the text input element
+//     const textInput = document.querySelector("#userSearch");
 
-    // In order to access the user input we store reference to their query in a variable
-    const userInput = textInput.value;
+//     // In order to access the user input we store reference to their query in a variable
+//     const userInput = textInput.value;
 
-    // Make a fetch request to the API
-    myApp.getCountryData(userInput);
+//     // Make a fetch request to the API
+//     myApp.getCountryData(userInput);
 
-    //Clear the text input after the user submitted a search query
-    textInput.value = "";
-  });
-};
+//     //Clear the text input after the user submitted a search query
+//     textInput.value = "";
+//   });
+// };
 
 // Declare an initialization method
 myApp.init = () => {
   // Call the getData method
   myApp.getGlobalData();
-  myApp.getUserInput();
+  myApp.getCountryData();
+  // myApp.getUserInput();
 };
 
 // Call the initialization method
