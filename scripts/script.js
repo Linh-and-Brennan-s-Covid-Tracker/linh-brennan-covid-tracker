@@ -37,7 +37,7 @@ myApp.generateDropdown = (countryData) => {
   // Sort the country data retrieved by the fetch request by country name or alphabetical order
   countryData.sort((a, b) => a.name > b.name);
   // Create option elements for each index of the countryData array
-  countryData.forEach((country) => {   
+  countryData.forEach((country) => {
     // Destructure each object in the array to access the country name and code
     const { code, name } = country;
     // Create each option element
@@ -125,15 +125,15 @@ myApp.getUserInput = () => {
   });
 };
 
-myApp.displaySearchHistory = countryData => {
+myApp.displaySearchHistory = (countryData) => {
   // Access the specific data from each country object that needs to be displayed, save reference to the values obtained by destructing the object
   const { code, latest_data, name } = countryData;
   const { confirmed } = latest_data;
-  // Store the data into a new object and push that to the country list array 
+  // Store the data into a new object and push that to the country list array
   const recentQuery = {
     name: name,
-    confirmed: confirmed
-  }
+    confirmed: confirmed,
+  };
   // Update the unordered list element with the most recent search
   myApp.searchedCountries.unshift(recentQuery);
   // Store reference to the element that will render the user's search history
@@ -141,8 +141,12 @@ myApp.displaySearchHistory = countryData => {
   // Create an li element to store the information from the recent query object
   const liElement = document.createElement("li");
   // Update the li element content with the data from the array and request a flag image from the country flag api
-  liElement.innerHTML = `<span class="flagContainer"><img src="${myApp.countryFlags}${code}/flat/64.png"></span><span>${recentQuery.name}: ${recentQuery.confirmed.toLocaleString()}</span>`;
-  searchHistory.prepend(liElement); 
+  liElement.innerHTML = `<span class="flagContainer"><img src="${
+    myApp.countryFlags
+  }${code}/flat/32.png" alt="the ${name} flag"></span><span>${
+    recentQuery.name
+  }: ${recentQuery.confirmed.toLocaleString()}</span>`;
+  searchHistory.prepend(liElement);
   // Limit the number of items that are displayed for the user, if the length exceeds 5 remove the oldest query
   if (myApp.searchedCountries.length === 6) {
     // Remove the oldest search query from the array stored within the namespace object
@@ -151,8 +155,8 @@ myApp.displaySearchHistory = countryData => {
     const allLiElements = searchHistory.getElementsByTagName("li");
     // Remove the oldest search query the page
     searchHistory.removeChild(allLiElements[allLiElements.length - 1]);
-  } 
-}
+  }
+};
 
 // Declare an initialization method
 myApp.init = () => {
