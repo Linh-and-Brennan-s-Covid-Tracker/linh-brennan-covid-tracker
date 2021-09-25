@@ -21,6 +21,15 @@ input, button {
     font-family: $primaryFont;
 }
 
+.middleContent {
+    
+    .wrapper {
+        display: flex;
+        border-radius: 5px;
+        padding: 0 .25rem;
+    }
+}
+
 // Code Debugging
 // * {
 //     border: 1px solid red;

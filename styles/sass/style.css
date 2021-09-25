@@ -267,6 +267,12 @@ input, button {
   font-family: "Poppins", sans-serif;
 }
 
+.middleContent .wrapper {
+  display: flex;
+  border-radius: 5px;
+  padding: 0 0.25rem;
+}
+
 header h1 {
   display: flex;
   justify-content: flex-start;
@@ -282,8 +288,13 @@ header .fa-virus {
   color: #4048cc;
 }
 
+.mapSection {
+  position: relative;
+  width: 80%;
+}
 .mapSection .wrapper {
   position: relative;
+  width: 100%;
 }
 .mapSection .wrapper .imageContainer {
   border-radius: 5px;
@@ -294,6 +305,42 @@ header .fa-virus {
   left: 2.5%;
   opacity: 0.5;
   font-size: 0.75rem;
+}
+
+.recentSection {
+  background-color: white;
+  border-radius: 5px;
+  width: 20%;
+  margin-left: 1rem;
+}
+.recentSection .wrapper {
+  display: inline-block;
+  width: 100%;
+}
+.recentSection h2 {
+  color: #4048cc;
+  font-weight: 500;
+  font-size: 1.25rem;
+  padding-bottom: 0.75rem;
+}
+.recentSection ul {
+  width: 100%;
+  border-radius: 5px;
+}
+.recentSection ul li {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  border-bottom: 1px solid #f5f7fb;
+  padding: 0.5rem 0;
+  margin: 0.5rem 0;
+}
+.recentSection ul li .flagContainer {
+  width: 30px;
+  margin: 0 0.5rem;
+}
+.recentSection ul li span:nth-child(2) {
+  font-size: 0.8rem;
 }
 
 .covidStatistics h2 {

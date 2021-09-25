@@ -39,15 +39,26 @@
                 </div>    
             </div>
         </section>
-        <!-- World Map -->
-        <section class="mapSection">
+        <section class="middleContent">
             <div class="wrapper">
-                <div class="imageContainer">
-                    <img src="./assets/worldMap.png" alt="picture of the world map" class="worldMap">
-                </div>
-                <div class="lastUpdated" id="lastUpdated">
-                </div>
+                <!-- World Map -->
+                <section class="mapSection">
+                    <div class="wrapper">
+                        <div class="imageContainer">
+                            <img src="./assets/worldMap.png" alt="picture of the world map" class="worldMap">
+                        </div>
+                        <div class="lastUpdated" id="lastUpdated"></div>
+                    </div>
+                </section>
+                <!-- Recent Searches -->
+                <aside class="recentSection">
+                    <div class="wrapper">
+                        <h2>Recent Searches</h2>
+                        <ul id="searchHistory"></ul>
+                    </div>
+                </aside>
             </div>
+        </section>
             <!-- Potential div for global graph as stretch goal -->
         </section>
         <!-- Specific Countries -->
@@ -57,8 +68,8 @@
                 <form action="">
                     <label for="country" class="sr-only">Country</label>
                     <select type="select" name="country" id="country">
+                        <option value="">Please select a country</option>
                     </select>
-                    <!-- <button type="submit">Submit</button> -->
                 </form>
                 <!-- Potential div for line statistics according to the infected rate -->
                 <div class="countryInformation">

@@ -1,0 +1,43 @@
+.recentSection {
+    background-color: white;
+    border-radius: 5px;
+    width: 20%;
+    margin-left: 1rem;
+    
+    .wrapper {
+        display: inline-block;
+        width: 100%;
+    }
+
+    h2 {
+        color: $purpleBlue;
+        font-weight: 500;
+        font-size: 1.25rem;
+        padding-bottom: .75rem;
+    }
+    
+    ul {
+        width: 100%;
+        border-radius: 5px;
+
+        li {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            border-bottom: 1px solid $backgroundColour;
+            padding: .5rem 0;
+            margin: .5rem 0;
+
+            .flagContainer {
+                width: 30px;
+                margin: 0 .5rem;
+            }
+
+            span:nth-child(2) {
+                font-size: .8rem;
+            }
+        }
+
+    }
+
+}

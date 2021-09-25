@@ -4,6 +4,10 @@ const myApp = {};
 // Add properties to namespace object including the API endpoints
 myApp.globalTimeline = "https://corona-api.com/timeline";
 myApp.allCountries = "https://corona-api.com/countries";
+myApp.countryFlags = "https://www.countryflags.io/";
+
+// Create an object to store the most recent searches by the user
+myApp.searchedCountries = [];
 
 // Use Fetch API to get all relevant global data
 myApp.getGlobalData = () => {
@@ -30,8 +34,10 @@ myApp.getCountryData = (countryCode) => {
 myApp.generateDropdown = (countryData) => {
   // Store a reference to the select element
   const countrySelect = document.querySelector("#country");
+  // Sort the country data retrieved by the fetch request by country name or alphabetical order
+  countryData.sort((a, b) => a.name > b.name);
   // Create option elements for each index of the countryData array
-  countryData.forEach((country) => {
+  countryData.forEach((country) => {   
     // Destructure each object in the array to access the country name and code
     const { code, name } = country;
     // Create each option element
@@ -75,6 +81,7 @@ myApp.displayCountryData = (countryData) => {
     ].toLocaleString()}</span>`;
     countryList.append(listElements);
   }
+  myApp.displaySearchHistory(countryData[0]);
 };
 
 //Declare a method to display global Data;
@@ -98,17 +105,16 @@ myApp.displayGlobalData = (data) => {
   lastUpdated.append(updatedCaption);
 };
 
-// Attach an event listener to the button that takes the Country code value from the option selected by the user
-// Make a fetch request with the selected country code
-//
-
 //Declare a method to filter based on user selection
 myApp.validateInput = (allCountries, countryCode) => {
   const apiResponse = allCountries.filter(
     (country) => country.code === `${countryCode}`
   );
-  //Pass the selected code to display user selection accordingly
-  myApp.displayCountryData(apiResponse);
+  // Create an if statement to display data only when user selects option
+  if (apiResponse.length > 0) {
+    //Pass the selected code to display user selection accordingly
+    myApp.displayCountryData(apiResponse);
+  }
 };
 
 //Declare a method to listen for user's change within the dropdown menu
@@ -118,6 +124,35 @@ myApp.getUserInput = () => {
     myApp.getCountryData(event.target.value);
   });
 };
+
+myApp.displaySearchHistory = countryData => {
+  // Access the specific data from each country object that needs to be displayed, save reference to the values obtained by destructing the object
+  const { code, latest_data, name } = countryData;
+  const { confirmed } = latest_data;
+  // Store the data into a new object and push that to the country list array 
+  const recentQuery = {
+    name: name,
+    confirmed: confirmed
+  }
+  // Update the unordered list element with the most recent search
+  myApp.searchedCountries.unshift(recentQuery);
+  // Store reference to the element that will render the user's search history
+  const searchHistory = document.querySelector("#searchHistory");
+  // Create an li element to store the information from the recent query object
+  const liElement = document.createElement("li");
+  // Update the li element content with the data from the array and request a flag image from the country flag api
+  liElement.innerHTML = `<span class="flagContainer"><img src="${myApp.countryFlags}${code}/flat/64.png"></span><span>${recentQuery.name}: ${recentQuery.confirmed.toLocaleString()}</span>`;
+  searchHistory.prepend(liElement); 
+  // Limit the number of items that are displayed for the user, if the length exceeds 5 remove the oldest query
+  if (myApp.searchedCountries.length === 6) {
+    // Remove the oldest search query from the array stored within the namespace object
+    myApp.searchedCountries.pop();
+    // Store references for all of the li elements in the search history unordered list
+    const allLiElements = searchHistory.getElementsByTagName("li");
+    // Remove the oldest search query the page
+    searchHistory.removeChild(allLiElements[allLiElements.length - 1]);
+  } 
+}
 
 // Declare an initialization method
 myApp.init = () => {
