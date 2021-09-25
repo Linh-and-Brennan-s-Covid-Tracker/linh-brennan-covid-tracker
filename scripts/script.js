@@ -14,13 +14,15 @@ myApp.getGlobalData = () => {
 };
 
 // Use Fetch API to all the data of each country
-myApp.getCountryData = () => {
+myApp.getCountryData = (countryCode) => {
   const url = new URL(myApp.allCountries);
   fetch(url)
     .then((response) => response.json())
     .then((jsonResponse) => {
-
-      return myApp.generateDropdown(jsonResponse.data);
+      //generate dropdown options based on loading the entire API data
+      myApp.generateDropdown(jsonResponse.data);
+      //pass the entire API data to validateInput to filter data based on country selected by the user
+      myApp.validateInput(jsonResponse.data, countryCode);
     });
 };
 
@@ -29,41 +31,18 @@ myApp.generateDropdown = (countryData) => {
   // Store a reference to the select element
   const countrySelect = document.querySelector("#country");
   // Create option elements for each index of the countryData array
-  countryData.forEach(country => {
+  countryData.forEach((country) => {
     // Destructure each object in the array to access the country name and code
     const { code, name } = country;
-    // Create each option element 
+    // Create each option element
     const optionElement = document.createElement("option");
     // Attach the destructured variables
     optionElement.value = code;
     optionElement.textContent = name;
+    optionElement.id = code;
     // Append each option element to the select element
     countrySelect.append(optionElement);
   });
-
-}
-// Attach an event listener to the button that takes the Country code value from the option selected by the user
-// Make a fetch request with the selected country code
-
-myApp.validateInput = (allCountriesAPI, countryName) => {
-  const apiResponse = allCountriesAPI.filter(
-    (country) => country.name.toLowerCase() === `${countryName.toLowerCase()}`
-  );
-  // Create a conditional statement that will evaluate to true if the user input matches a country from the fetch request response
-  if (apiResponse.length > 0) {
-    myApp.displayCountryData(apiResponse);
-  } else {
-    myApp.displayErrors(countryName);
-  }
-};
-
-//Declare a method to handle errors if user mistyped or there are no data available in the api.
-myApp.displayErrors = (countryName) => {
-  const countryList = document.querySelector("#individualCountries");
-  countryList.innerHTML = "";
-  const errorMessage = document.createElement("p");
-  errorMessage.textContent = `We could not find data on this country, ${countryName}. It appears there are no available data.`;
-  countryList.append(errorMessage);
 };
 
 //Declare a method to display country Data;
@@ -119,35 +98,33 @@ myApp.displayGlobalData = (data) => {
   lastUpdated.append(updatedCaption);
 };
 
-// Declare a method for getting, storing, and using the user's input
-// myApp.getUserInput = () => {
-//   // Store the form element in a variable
-//   const formElement = document.querySelector("form");
+// Attach an event listener to the button that takes the Country code value from the option selected by the user
+// Make a fetch request with the selected country code
+//
 
-//   // Attach an event listener to the form element that will react to a submit event
-//   formElement.addEventListener("submit", (event) => {
-//     event.preventDefault();
+//Declare a method to filter based on user selection
+myApp.validateInput = (allCountries, countryCode) => {
+  const apiResponse = allCountries.filter(
+    (country) => country.code === `${countryCode}`
+  );
+  //Pass the selected code to display user selection accordingly
+  myApp.displayCountryData(apiResponse);
+};
 
-//     // Store a reference to the text input element
-//     const textInput = document.querySelector("#userSearch");
-
-//     // In order to access the user input we store reference to their query in a variable
-//     const userInput = textInput.value;
-
-//     // Make a fetch request to the API
-//     myApp.getCountryData(userInput);
-
-//     //Clear the text input after the user submitted a search query
-//     textInput.value = "";
-//   });
-// };
+//Declare a method to listen for user's change within the dropdown menu
+myApp.getUserInput = () => {
+  document.querySelector("#country").addEventListener("change", (event) => {
+    //get the country code from user's selection from dropdown menu to pass in getCountryData function
+    myApp.getCountryData(event.target.value);
+  });
+};
 
 // Declare an initialization method
 myApp.init = () => {
   // Call the getData method
   myApp.getGlobalData();
   myApp.getCountryData();
-  // myApp.getUserInput();
+  myApp.getUserInput();
 };
 
 // Call the initialization method
