@@ -21,17 +21,8 @@ input, option, select {
     font-family: $primaryFont;
 }
 
-.middleContent {
-    
-    .wrapper {
-        display: flex;
-        border-radius: 5px;
-        padding: 0 .25rem;
-    }
-}
-
 h2 {
-     color: $purpleBlue;
-     font-weight: 500;
-     font-size: 1.5rem;
+    color: $purpleBlue;
+    font-weight: 500;
+    font-size: 1.5rem;
 }
