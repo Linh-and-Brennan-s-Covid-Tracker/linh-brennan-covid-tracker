@@ -9,26 +9,24 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css"> 
     <link rel="stylesheet" href='./styles/sass/style.css'>
+    <!-- AnyChart Documentation recommends placing these script tags in the head please refer to our script file for our citation -->
+    <script src="https://cdn.anychart.com/releases/8.10.0/js/anychart-core.min.js" type="text/javascript"></script>
+    <script src="https://cdn.anychart.com/releases/8.10.0/js/anychart-map.min.js" type="text/javascript"></script>
+    <script src="https://cdn.anychart.com/releases/8.7.1/geodata/custom/world/world.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.3.15/proj4.js"></script>
     <title>Linh and Brennan's Covid Tracker</title>
-
-    <!-- Reminder: Must review accessbility best practices and compare them to the application before submission. -->
     <!-- Reminder: Test to see if there are any significant differences between local repository and hosting live on netlify. -->
-    <!-- Question: What are some accessbility practices we should keep in mind for this project? -->
-    <!-- Sep26 Reminder: Updated Dropdown Styling -->
-    <!-- Sep26: Implement Interactive Map -->
     <!-- Sep 26: Error handling for Country with no data -->
     <!-- Sep26: Clean Up comment -->
     <!-- Sep26: Accessibility Final Check -->
     <!-- Sep26: Launch on Netify and test-->
     <!-- Sep26: Presentation Note and Practice-->
-
-
 </head>
 <body>
     <!-- Header Section -->
     <header>
         <div class="wrapper">
-            <h1>Covid-19<i aria-hidden="true" class="fas fa-virus"></i> Tracker</h1>
+            <h1>Covid-19<i aria-hidden="true" class="fas fa-virus"></i>Tracker</h1>
         </div>
     </header>
     <main>
@@ -49,9 +47,7 @@
                 <!-- World Map -->
                 <section class="mapSection">
                     <div class="wrapper">
-                        <div class="imageContainer">
-                            <img src="./assets/worldMap.png" alt="picture of the world map" class="worldMap">
-                        </div>
+                        <div id="container" class="worldMapContainer"></div>
                         <div class="lastUpdated" id="lastUpdated"></div>
                     </div>
                 </section>
@@ -64,19 +60,19 @@
                 </aside>
             </div>
         </section>
-            <!-- Potential div for global graph as stretch goal -->
         </section>
         <!-- Specific Countries -->
         <section class="countrySection">
             <div class="wrapper">
                 <h2>Statistics by Country</h2>
+                <!-- Country Select Form -->
                 <form action="">
                     <label for="country" class="sr-only">Country</label>
                     <select type="select" name="country" id="country">
                         <option value="">Please select a country</option>
                     </select>
                 </form>
-                <!-- Potential div for line statistics according to the infected rate -->
+                <!-- Country Specific Data -->
                 <div class="countryInformation">
                     <div>
                         <ul class="individualCountries" id="individualCountries">
@@ -84,11 +80,8 @@
                     </div>
                     <div id="errorMessage"></div>
                 </div>
-                 <!-- Potential graph from each country statistics -->
             </div>
         </section>
-        <!-- Potential aside section for covid information -->
-        <!-- Potential aside section for recent user search -->
         <footer>
             <div class="wrapper">
                 <p>Created by <a href="https://github.com/Linh-and-Brennan-s-Covid-Tracker/linh-brennan-covid-tracker"> Linh Doan & Brennan Curtis</a></p>

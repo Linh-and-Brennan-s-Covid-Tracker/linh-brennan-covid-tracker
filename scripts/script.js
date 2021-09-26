@@ -23,6 +23,8 @@ myApp.getCountryData = (countryCode) => {
   fetch(url)
     .then((response) => response.json())
     .then((jsonResponse) => {
+      // Pass the fetch request data into the renderWorldMap method
+      myApp.renderWorldMap(jsonResponse.data);
       //generate dropdown options based on loading the entire API data
       myApp.generateDropdown(jsonResponse.data);
       //pass the entire API data to validateInput to filter data based on country selected by the user
@@ -157,6 +159,42 @@ myApp.displaySearchHistory = (countryData) => {
     searchHistory.removeChild(allLiElements[allLiElements.length - 1]);
   }
 };
+
+// Courtesy of AnyChart we accessed their library to use a custom world map the user is able to interact with : https://docs.anychart.com/Quick_Start/Quick_Start
+myApp.renderWorldMap = countryData => {
+  // Store a reference to the div container for the world map in a variable
+  const mapContainer = document.querySelector("#container");
+  // Clear the inner HTML to prevent duplicating the world map whenever a new country is selected by the user
+  mapContainer.innerHTML = "";
+  // Create an empty array to store an object with information from each country return by the fetch request
+  let data = [];
+  // Loop through the country data and specifically push the country code and confirmed cases values to the empty array
+  for (let i = 0; i < countryData.length; i++) {
+    // Destructure the data to access specific data
+    const { code, latest_data } = countryData[i];
+    const { confirmed } = latest_data; 
+    // Create a country object that stores the destructured data
+    const country = {
+      "id": code, "value": confirmed
+    }
+    // Push each object into the empty array created earlier in the method
+    data.push(country);
+  }
+  
+  // Generate from library
+  let map = anychart.map();
+  map.geoData(anychart.maps.world);
+  
+  // set the series
+  let series = map.choropleth(data);
+  
+  // disable labels
+  series.labels(false);
+  
+  // set the container
+  map.container('container');
+  map.draw();
+}
 
 // Declare an initialization method
 myApp.init = () => {
