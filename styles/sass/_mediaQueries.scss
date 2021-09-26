@@ -62,12 +62,21 @@
          width: calc(60% - 20vw);
          min-width: 400px;
      }
+
+    .covidStatistics {
+        .globalList {
+            font-size: .85rem;
+        }
+    }
+
+    .individualCountries li {
+        font-size: .85rem;
+    }
 }
 
 /* Landscape phones and down */
 @media (max-width: 480px) {
     header {
-
         .wrapper {
 
             h1 {
@@ -77,21 +86,15 @@
             .fas {
                 font-size: .85rem;
             }
-
         }
-
     }
 
     .mapSection {
-
         .wrapper {
-
             .worldMapContainer {
                 height: 200px;
             }
-    
         }
-
     }
 
 
@@ -109,13 +112,11 @@
     .covidStatistics {
         .globalList {
             justify-content: space-evenly;
-            font-size: .85rem;
         }
     }
 
     .individualCountries li {
         width: calc(100%/2 - .5rem);
         margin-bottom: 0.5rem;
-        font-size: .85rem;
     }
 }

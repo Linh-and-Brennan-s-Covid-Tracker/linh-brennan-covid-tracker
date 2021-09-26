@@ -303,8 +303,9 @@ header .fa-virus {
   position: relative;
   width: 100%;
 }
-.mapSection .wrapper .imageContainer {
-  border-radius: 5px;
+.mapSection .wrapper .worldMapContainer {
+  height: 400px;
+  width: 100%;
 }
 .mapSection .wrapper .lastUpdated {
   position: absolute;
@@ -519,6 +520,14 @@ footer .wrapper {
     width: calc(60% - 20vw);
     min-width: 400px;
   }
+
+  .covidStatistics .globalList {
+    font-size: 0.85rem;
+  }
+
+  .individualCountries li {
+    font-size: 0.85rem;
+  }
 }
 /* Landscape phones and down */
 @media (max-width: 480px) {
@@ -544,12 +553,10 @@ footer .wrapper {
 
   .covidStatistics .globalList {
     justify-content: space-evenly;
-    font-size: 0.85rem;
   }
 
   .individualCountries li {
     width: calc(100%/2 - .5rem);
     margin-bottom: 0.5rem;
-    font-size: 0.85rem;
   }
 }/*# sourceMappingURL=style.css.map */

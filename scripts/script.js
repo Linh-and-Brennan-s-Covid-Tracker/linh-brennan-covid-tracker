@@ -36,8 +36,16 @@ myApp.getCountryData = (countryCode) => {
 myApp.generateDropdown = (countryData) => {
   // Store a reference to the select element
   const countrySelect = document.querySelector("#country");
+  countrySelect.innerHTML = "";
+
   // Sort the country data retrieved by the fetch request by country name or alphabetical order
   countryData.sort((a, b) => a.name > b.name);
+
+  //  Create the default message in the dropdown menu as a prompt:
+  const optionElement = document.createElement("option");
+  optionElement.textContent = "Please select an option";
+  countrySelect.append(optionElement);
+
   // Create option elements for each index of the countryData array
   countryData.forEach((country) => {
     // Destructure each object in the array to access the country name and code
@@ -161,7 +169,7 @@ myApp.displaySearchHistory = (countryData) => {
 };
 
 // Courtesy of AnyChart we accessed their library to use a custom world map the user is able to interact with : https://docs.anychart.com/Quick_Start/Quick_Start
-myApp.renderWorldMap = countryData => {
+myApp.renderWorldMap = (countryData) => {
   // Store a reference to the div container for the world map in a variable
   const mapContainer = document.querySelector("#container");
   // Clear the inner HTML to prevent duplicating the world map whenever a new country is selected by the user
@@ -172,29 +180,30 @@ myApp.renderWorldMap = countryData => {
   for (let i = 0; i < countryData.length; i++) {
     // Destructure the data to access specific data
     const { code, latest_data } = countryData[i];
-    const { confirmed } = latest_data; 
+    const { confirmed } = latest_data;
     // Create a country object that stores the destructured data
     const country = {
-      "id": code, "value": confirmed
-    }
+      id: code,
+      value: confirmed,
+    };
     // Push each object into the empty array created earlier in the method
     data.push(country);
   }
-  
+
   // Generate from library
   let map = anychart.map();
   map.geoData(anychart.maps.world);
-  
+
   // set the series
   let series = map.choropleth(data);
-  
+
   // disable labels
   series.labels(false);
-  
+
   // set the container
-  map.container('container');
+  map.container("container");
   map.draw();
-}
+};
 
 // Declare an initialization method
 myApp.init = () => {
