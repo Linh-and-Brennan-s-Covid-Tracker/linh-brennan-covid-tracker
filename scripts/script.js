@@ -106,7 +106,7 @@ myApp.getUserInput = () => {
   });
 };
 
-// Displays the recent search history and renders the five most recent to the aside element of the page 
+// Displays the recent search history and renders the five most recent to the aside element of the page
 myApp.displaySearchHistory = (countryData) => {
   const { code, latest_data, name } = countryData;
   const { confirmed } = latest_data;
@@ -117,9 +117,11 @@ myApp.displaySearchHistory = (countryData) => {
   myApp.searchedCountries.unshift(recentQuery);
   const searchHistory = document.querySelector("#searchHistory");
   const liElement = document.createElement("li");
-  liElement.innerHTML = `<span class="flagContainer"><img src="${
-    myApp.countryFlags
-  }${code}/flat/32.png" alt="the ${name} flag"></span><span>${
+  //<span class="flagContainer"><img src="${
+  //myApp.countryFlags
+  //}${code}/flat/32.png" alt="the ${name} flag"></span>
+
+  liElement.innerHTML = `<span class="flagContainer">${
     recentQuery.name
   }: ${recentQuery.confirmed.toLocaleString()}</span>`;
   searchHistory.prepend(liElement);
